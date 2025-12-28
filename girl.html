@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>日式唯美形象誌 - 幽玄之美</title>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@300;500&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-color: #f9f6f0; /* 和紙米色 */
+            --text-color: #2c2c2c; /* 深炭灰 */
+            --accent-color: #8c7654; /* 木質金褐 */
+            --border-color: #e0d8c8;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            font-family: 'Noto Serif TC', serif;
+            line-height: 1.8;
+            overflow-x: hidden;
+        }
+
+        /* 質感背景紋理 */
+        body::before {
+            content: "";
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background-image: url('https://www.transparenttextures.com/patterns/paper-fibers.png');
+            opacity: 0.3;
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        header {
+            text-align: center;
+            padding: 60px 20px;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        h1 {
+            font-weight: 500;
+            letter-spacing: 0.3em;
+            font-size: 1.8rem;
+            margin-bottom: 10px;
+        }
+
+        .subtitle {
+            font-size: 0.9rem;
+            color: var(--accent-color);
+            letter-spacing: 0.1em;
+        }
+
+        .gallery {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .photo-card {
+            margin-bottom: 40px;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.8s ease-out;
+        }
+
+        /* 當元素進入畫面時的動畫 */
+        .photo-card.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .image-container {
+            width: 100%;
+            border: 1px solid var(--border-color);
+            padding: 10px;
+            background: white;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+        }
+
+        img {
+            width: 100%;
+            display: block;
+            filter: sepia(10%) contrast(95%); /* 輕微復古濾鏡 */
+        }
+
+        .caption {
+            margin-top: 15px;
+            text-align: right;
+            font-size: 0.85rem;
+            color: var(--accent-color);
+            font-style: italic;
+            border-right: 2px solid var(--accent-color);
+            padding-right: 10px;
+        }
+
+        footer {
+            text-align: center;
+            padding: 40px 20px;
+            font-size: 0.8rem;
+            color: #999;
+            letter-spacing: 0.2em;
+        }
+
+        /* 手機端優化 */
+        @media (max-width: 480px) {
+            h1 { font-size: 1.5rem; }
+            .gallery { padding: 15px; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>幽玄之美</h1>
+        <p class="subtitle">Michelle Hsiao - The Beauty of Silence</p>
+    </header>
+
+    <main class="gallery">
+        <div class="photo-card">
+            <div class="image-container">
+                <img src="image1.jpg" alt="日式形象照 1">
+            </div>
+            <div class="caption">「光影在障子門上編織著時光。」</div>
+        </div>
+
+        <div class="photo-card">
+            <div class="image-container">
+                <img src="image2.jpg" alt="日式形象照 2">
+            </div>
+            <div class="caption">「靜謐的片刻，與自己對話。」</div>
+        </div>
+
+        <div class="photo-card">
+            <div class="image-container">
+                <img src="image3.jpg" alt="日式形象照 3">
+            </div>
+            <div class="caption">「榻榻米的清香，是記憶的溫度。」</div>
+        </div>
+    </main>
+
+    <footer>
+        <p>© 2025.12.25 日式湯屋米雪兒</p>
+    </footer>
+
+    <script>
+        // 簡單的捲動偵測動畫 (Intersection Observer API)
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll('.photo-card').forEach(card => {
+            observer.observe(card);
+        });
+    </script>
+</body>
+</html>
